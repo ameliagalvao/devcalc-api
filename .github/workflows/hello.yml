@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+  pull_request:
+    branches:
+      - main
 jobs:
   say_hello:
     runs-on: ubuntu-latest
