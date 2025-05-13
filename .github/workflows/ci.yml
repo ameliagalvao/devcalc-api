@@ -61,9 +61,9 @@ jobs:
       - name: Package JAR
         run: mvn package
 
-    deploy:
-      runs-on: ubuntu-latest
-      needs: [ build, test ]
-      steps:
-        - name: Deploy
-          run: echo "Deploy realizado com sucesso"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    steps:
+      - name: Deploy
+        run: echo "Deploy realizado com sucesso"

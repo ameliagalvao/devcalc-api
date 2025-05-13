@@ -7,6 +7,7 @@ public class DevCalcApp {
     public static void main(String[] args) {
         CalculatorService calc = new CalculatorService();
         // Inicia Javalin com JSON padrão
+        // comentario teste
         Javalin app = Javalin.create((JavalinConfig cfg) -> {
             cfg.http.defaultContentType = "application/json";
         }).start(7000);
