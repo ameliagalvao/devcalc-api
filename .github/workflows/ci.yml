@@ -46,3 +46,24 @@ jobs:
           java-version: '11'
       - name: Run tests
         run: mvn test
+
+  package:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: Package JAR
+        run: mvn package
+
+    deploy:
+      runs-on: ubuntu-latest
+      needs: [ build, test ]
+      steps:
+        - name: Deploy
+          run: echo "Deploy realizado com sucesso"
