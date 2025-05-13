@@ -6,7 +6,7 @@ import java.util.Objects;
 public class DevCalcApp {
     public static void main(String[] args) {
         CalculatorService calc = new CalculatorService();
-
+        // Comentário para testar o cy.yml
         // Inicia Javalin com JSON padrão
         Javalin app = Javalin.create((JavalinConfig cfg) -> {
             cfg.http.defaultContentType = "application/json";
