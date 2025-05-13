@@ -92,3 +92,10 @@ Todos os workflows do GitHub Actions estão no diretório:
 ```
 .github/workflows/
 ```
+
+Exemplos de workflows:
+
+- `lint.yml` — formatação e análise estática
+- `test.yml` — execução de testes
+- `build-and-package.yml` — build e empacotamento
+- `deploy-simulation.yml` — simulação de deploy
