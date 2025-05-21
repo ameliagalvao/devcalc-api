@@ -11,6 +11,18 @@ on:
       - main
     paths:
       - 'src/**'
+  workflow_dispatch:
+    inputs:
+      run_lint:
+        description: 'Executar linting?'
+        required: false
+        default: true
+        type: boolean
+      run_tests:
+        description: 'Executar testes?'
+        required: false
+        default: true
+        type: boolean
 
 jobs:
   lint-and-test:
