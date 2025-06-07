@@ -1,0 +1,22 @@
+name: Runner Local Ubuntu-WSL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testar-runner-local:
+    runs-on: self-hosted
+    steps:
+      - name: Mostrar informações do sistema
+        run: uname -a
+
+      - name: Mostrar versão do Java
+        run: java -version || echo "Java não instalado"
+
+      - name: Instalar htop
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y htop
+
+      - name: Verificar htop instalado
+        run: htop --version
