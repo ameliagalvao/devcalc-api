@@ -1,0 +1,45 @@
+name: Env Context Demo
+
+on:
+  workflow_dispatch:
+
+env:
+  STAGE: nivel-workflow
+  SCOPE: nivel-workflow
+
+jobs:
+
+  mostrar-herdando-nivel-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: herdando direto do workflow
+      run: |
+        echo "Usuário que acionou o workflow: ${{ github.actor }}"
+        echo "Sistema operacional do runner: ${{ runner.os }}"
+        echo "Valor da variável STAGE: $STAGE"
+        echo "Valor da variável SCOPE: $SCOPE"
+
+  mostrar-contextos-step-job:
+    runs-on: ubuntu-latest
+
+    env:
+      SCOPE: nivel-job
+
+    steps:
+      - name: Exibir em nível Step
+        env:
+          SCOPE: nivel-step
+        run: |
+          echo "Usuário que acionou o workflow: ${{ github.actor }}"
+          echo "Sistema operacional do runner: ${{ runner.os }}"
+          echo "Valor da variável STAGE: $STAGE"
+          echo "Valor da variável SCOPE: $SCOPE"
+
+      - name: Exibir herdando de job
+        run: |
+          echo "[Step com SCOPE em job]"
+          echo "Usuário que acionou o workflow: ${{ github.actor }}"
+          echo "Sistema operacional do runner: ${{ runner.os }}"
+          echo "Valor da variável STAGE: $STAGE"
+          echo "SCOPE: $SCOPE"
