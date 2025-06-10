@@ -17,3 +17,10 @@ jobs:
 
       - name: Mostrar versão do Java
         run: java -version || echo "Java não instalado"
+
+      - name: Instalar tree
+        run: |
+          sudo apt-get install -y tree
+
+      - name: Verificar tree instalado
+        run: tree --version
