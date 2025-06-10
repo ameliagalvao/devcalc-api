@@ -10,13 +10,10 @@ jobs:
       - name: Mostrar informações do sistema
         run: uname -a
 
-      - name: Mostrar versão do Java
-        run: java -version || echo "Java não instalado"
-
-      - name: Instalar htop
+      - name: Atualizar pacotes e instalar Java/Maven
         run: |
           sudo apt-get update
-          sudo apt-get install -y htop
+          sudo apt-get install -y openjdk-17-jdk maven
 
-      - name: Verificar htop instalado
-        run: htop --version
+      - name: Mostrar versão do Java
+        run: java -version || echo "Java não instalado"
