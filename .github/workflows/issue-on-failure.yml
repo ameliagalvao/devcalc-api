@@ -1,0 +1,34 @@
+name: Issue on Failure
+
+on:
+  workflow_dispatch:
+    inputs:
+      DEPLOY_ENV:
+        description: "Ambiente de deploy"
+        required: false
+        type: string
+
+permissions:
+  issues: write
+
+jobs:
+  checar-variavel:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar se DEPLOY_ENV está definido
+        run: |
+          if [ -z "${{ github.event.inputs.DEPLOY_ENV }}" ]; then
+            echo "Criando issue por ausência da variável DEPLOY_ENV..."
+            curl -X POST https://api.github.com/repos/${{ github.repository }}/issues \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              -d '{
+                "title": "Variável DEPLOY_ENV ausente",
+                "body": "O workflow foi executado sem definir a variável `DEPLOY_ENV`, necessária para o deploy.",
+                "labels": ["erro", "automático"]
+              }'
+            exit 1
+          else
+            echo "Deploy será executado para: ${{ github.event.inputs.DEPLOY_ENV }}"
+          fi
